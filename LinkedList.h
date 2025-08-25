@@ -3,6 +3,7 @@
 
 #include "Node.h"
 #include <string>
+#include <cstdint>
 
 class LinkedList
 {
@@ -14,6 +15,7 @@ class LinkedList
     bool Delete(uint32_t value);
     void Usurp(uint32_t value);
     void Decapitate(void);
+    void DetachTail(void);
     void Reverse(void);
     std::string ToString();
     std::unique_ptr<Node> head;

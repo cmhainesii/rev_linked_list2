@@ -107,7 +107,7 @@ void LinkedList::Decapitate()
     }
 }
 
-void LinkedList::Reverse()
+void LinkedList::Reverse(void)
 {
     std::unique_ptr<Node> current = std::move(head);
     std::unique_ptr<Node> prev = nullptr;
@@ -120,4 +120,28 @@ void LinkedList::Reverse()
     }
 
     head = std::move(prev);
+}
+
+void LinkedList::DetachTail(void)
+{
+
+
+    if (!head)
+    {
+        return;
+    }
+
+    // Traverse the list and remove the last node
+    Node* current = head.get();
+    Node* prev = nullptr;
+
+    while(current->next.get())
+    {
+        Node* next = current->next.get();
+        prev = current;
+        current = next;        
+    }
+
+    // current is the tail. Clear prev->next to detach the current tail.
+    prev->next = nullptr;
 }

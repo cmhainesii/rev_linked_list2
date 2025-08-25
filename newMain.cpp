@@ -11,16 +11,19 @@ int main()
     // Add some nodes to the list
     list->Add(100);
     list->Add(200);
+    list->Add(500);
+    list->Add(800);
 
     // Print list
     std::cout << "Values:\n";
     std::cout << list->ToString();
 
-    list->Usurp(420);
+    list->DetachTail();
+    list->DetachTail();
+
     std::cout << "Values:\n" << list->ToString() << "\n";
 
-    list->Reverse();
-    std::cout << "Values:\n" << list->ToString() << "\n";
+    
 
     return 0;
 }
