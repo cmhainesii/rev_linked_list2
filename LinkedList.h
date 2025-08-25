@@ -17,6 +17,7 @@ class LinkedList
     void Decapitate(void);
     void DetachTail(void);
     void Reverse(void);
+    bool Contains(uint32_t value);
     std::string ToString();
     std::unique_ptr<Node> head;
 };

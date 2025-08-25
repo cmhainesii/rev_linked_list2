@@ -54,6 +54,7 @@ bool LinkedList::Delete(uint32_t value)
             else
             {
                 head = std::move(current->next);
+                break;
             }
         }
         previous = current;
@@ -144,4 +145,21 @@ void LinkedList::DetachTail(void)
 
     // current is the tail. Clear prev->next to detach the current tail.
     prev->next = nullptr;
+}
+
+
+bool LinkedList::Contains(uint32_t value)
+{
+    Node* current = head.get();
+
+    while(current)
+    {
+        if(current->value == value)
+        {
+            return true;
+        }
+        current = current->next.get();
+    }
+
+    return false;
 }
