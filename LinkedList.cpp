@@ -1,5 +1,6 @@
 #include "LinkedList.h"
 #include <sstream>
+#include <algorithm>
 
 LinkedList::LinkedList(void)
 {
@@ -162,4 +163,23 @@ bool LinkedList::Contains(uint32_t value)
     }
 
     return false;
+}
+
+void LinkedList::Sort(void)
+{
+    if (!head || !head->next) return;
+
+    bool swapped;
+    do {
+        swapped = false;
+        Node* current = head.get();
+        while(current->next)
+        {
+            if(current->value > current->next->value) {
+                std::swap(current->value, current->next->value);
+                swapped = true;
+            }
+            current = current->next.get();
+        }
+    } while (swapped);
 }
