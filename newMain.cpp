@@ -3,28 +3,25 @@
 #include <iostream>
 #include <memory>
 #include <format>
+#include <random>
 
 int main()
 {
     std::unique_ptr<LinkedList> list = std::make_unique<LinkedList>();
 
-    // Add some nodes to the list
-    list->Add(800);
-    list->Add(500);
-    list->Add(200);
-    list->Add(100);
+    // Set up RNG
+    std::random_device rd; // Seed
+    std::mt19937 gen(rd()); // Mersenne Twister Engine
+    std::uniform_int_distribution<uint32_t> dist(0, 1000000);
 
-    // Print list
-    std::cout << "Values:\n";
-    std::cout << list->ToString();
-
-
-    std::cout << "Values:\n" << list->ToString() << "\n";
+    const size_t listSize = 100000;
+    for(size_t i = 0; i < listSize; ++i)
+    {
+        list->Add(dist(gen));
+    }
 
     list->Sort();
-    std::cout << "Values:\n" << list->ToString() << "\n";
-
-    
+    //std::cout << std::format("List:\n{}", list->ToString());
 
     return 0;
 }

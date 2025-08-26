@@ -165,7 +165,7 @@ bool LinkedList::Contains(uint32_t value)
     return false;
 }
 
-void LinkedList::Sort(void)
+void LinkedList::Sort(bool descending)
 {
     if (!head || !head->next) return;
 
@@ -175,10 +175,21 @@ void LinkedList::Sort(void)
         Node* current = head.get();
         while(current->next)
         {
-            if(current->value > current->next->value) {
-                std::swap(current->value, current->next->value);
-                swapped = true;
+            if (!descending)
+            {
+                if(current->value > current->next->value) {
+                    std::swap(current->value, current->next->value);
+                    swapped = true;
+                }
             }
+            else
+            {
+                if(current->value < current->next->value) {
+                    std::swap(current->value, current->next->value);
+                    swapped = true;
+                }
+            }
+            
             current = current->next.get();
         }
     } while (swapped);
